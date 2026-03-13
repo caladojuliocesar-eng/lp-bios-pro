@@ -4,6 +4,7 @@
   "description": "",
   "main": "build.js",
   "scripts": {
+    "build": "node sync.js && node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
