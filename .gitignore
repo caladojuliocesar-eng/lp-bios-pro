@@ -2,3 +2,5 @@ node_modules/
 dist/
 clientes.json
 .vscode/
+
+.vercel

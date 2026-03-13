@@ -1,0 +1,13 @@
+[
+  "Carimbo de data/hora",
+  "Endereço de e-mail",
+  "1. Nome do Profissional ou do Negócio",
+  "2. WhatsApp de Atendimento (com DDD)",
+  "3. Qual sua principal promessa ou diferencial? (Em 1 frase curta)",
+  "4. Mini-Biografia: Escreva um parágrafo curto sobre sua trajetória ou sua marca",
+  "5. Prova Social: Me diga um número que gera autoridade (Ex: 'Mais de 500 meninas transformadas', '5 anos no mercado')",
+  "6. Escreva seus top 3 Serviços Principais (Separe EXATAMENTE com vírgula)",
+  "7. Cidade e Bairro",
+  "8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)",
+  "9. Link da sua foto (Link Público do Google Drive)"
+]
