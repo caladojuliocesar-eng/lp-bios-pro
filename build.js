@@ -69,7 +69,25 @@ async function buildPages() {
       console.log(`✅ Página gerada: ${slug}.html`);
     }
 
-    console.log('\n🚀 Build concluído com sucesso!');
+    // 6. Gerar um Painel (index.html) para o Usuário ver na pasta raiz da Vercel
+    let indexHTML = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Painel LP Bios Pro</title><style>body { font-family: sans-serif; padding: 40px; background: #f3f6f4; } .card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } a { color: #1ebc59; font-weight: bold; text-decoration: none; }</style></head><body><h1>Painel de Clientes Ativos</h1>`;
+    
+    if (dadosClientes.length === 0) {
+        indexHTML += `<p>Nenhum cliente cadastrado ainda. A sua planilha está vazia!</p>`;
+    } else {
+        dadosClientes.forEach(cliente => {
+            const slug = generateSlug(cliente.nome_negocio);
+            indexHTML += `<div class="card">
+                <h3>${cliente.nome_negocio}</h3>
+                <p>Link: <a href="/${slug}.html" target="_blank">/${slug}.html</a></p>
+                <p>WhatsApp: ${cliente.whatsapp_display}</p>
+            </div>`;
+        });
+    }
+    indexHTML += `</body></html>`;
+    fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexHTML, 'utf-8');
+
+    console.log('\n🚀 Build e Painel concluídos com sucesso!');
 
   } catch (erro) {
     console.error('❌ Erro durante o build:', erro.message);
