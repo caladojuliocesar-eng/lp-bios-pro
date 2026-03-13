@@ -1,0 +1,14 @@
+[
+  "Carimbo de data/hora",
+  "Endereço de e-mail",
+  "1. Nome do seu Negócio (Ex: Padaria Doce Sabor)",
+  "2. Qual é o seu Serviço Principal? (Aquele que mais te define)",
+  "3. Cidade e Bairro onde o negócio está localizado (Ex: São Paulo, Vila Olímpia)",
+  "4. Número de Contato do WhatsApp (Inclua DDD, Ex: 11987654321)",
+  "5. Frase que define o seu Diferencial (Sua proposta de valor única em uma frase curta)",
+  "6. Quais outros Serviços você oferece?",
+  "6.1 Se 'Outros' foi selecionado ou se preferir listar, separe os serviços adicionais por vírgulas.",
+  "7. Cor Preferida ou Cor da Marca (No formato de código HEX, Ex: #1ebc59)",
+  "8. Upload de Imagem de Referência/Logo",
+  "8.1 Se não for possível fazer o upload, forneça o link do Google Drive para a imagem de referência/logo."
+]

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Profissional que Gera Clientes | Link da Bio que Converte</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1ebc59;
+    --verde-escuro: #128C7E;
+    --preto: #ffffff;
+    --cinza-escuro: #f3f6f4;
+    --cinza-medio: #e8ede9;
+    --cinza-card: #ffffff;
+    --texto: #1a1a1a;
+    --texto-suave: #5a6a62;
+    --branco: #1a1a1a;
+    --destaque: #1aaa50;
+    --borda: #e2e8e4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--preto);
+    color: var(--texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Sora', sans-serif;
+    line-height: 1.2;
+  }
+
+  /* ── UTILS ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .destaque { color: var(--verde); }
+  .tag {
+    display: inline-block;
+    background: rgba(30,188,89,0.10);
+    color: #1aaa50;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(30,188,89,0.22);
+    margin-bottom: 20px;
+  }
+
+  /* ── BOTÃO WHATSAPP ── */
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1ebc59;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 4px 20px rgba(30,188,89,0.25);
+  }
+  .btn-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(30,188,89,0.35);
+    background: #19a84f;
+  }
+  .btn-wa svg { flex-shrink: 0; }
+  .btn-wa-lg { font-size: 18px; padding: 20px 40px; border-radius: 14px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 60px;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30,188,89,0.07) 0%, transparent 70%);
+    top: -100px; right: -200px;
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,188,89,0.05) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-inner h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero-inner .sub {
+    font-size: clamp(16px, 2.5vw, 19px);
+    color: var(--texto-suave);
+    margin-bottom: 36px;
+    max-width: 600px;
+  }
+  .hero-proof {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+  .hero-proof span { color: var(--verde); font-weight: 600; }
+
+  /* ── SEÇÕES ── */
+  section { padding: 80px 0; }
+
+  .section-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--texto-suave);
+    margin-bottom: 48px;
+    max-width: 580px;
+  }
+
+  /* ── PROBLEMA ── */
+  #problema { background: var(--cinza-escuro); }
+  .problema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .problema-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .problema-item:hover { border-color: rgba(30,188,89,0.3); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .problema-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .problema-item h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+  .problema-item p { font-size: 14px; color: var(--texto-suave); }
+
+  /* ── COMPARAÇÃO ── */
+  #comparacao { background: var(--preto); }
+  .compare-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 560px) { .compare-wrap { grid-template-columns: 1fr; } }
+  .compare-card {
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .compare-card.ruim {
+    background: #fff5f5;
+    border-color: rgba(239,68,68,0.2);
+  }
+  .compare-card.bom {
+    background: #f0fdf5;
+    border-color: rgba(30,188,89,0.25);
+  }
+  .compare-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .compare-card.ruim .compare-label { color: #f87171; }
+  .compare-card.bom .compare-label { color: var(--verde); }
+  .compare-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .compare-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+  .compare-list li .ico { flex-shrink: 0; margin-top: 1px; font-size: 15px; }
+
+  /* ── SOLUÇÃO ── */
+  #solucao { background: var(--cinza-escuro); }
+  .solucao-box {
+    background: #f0fdf5;
+    border: 1px solid rgba(30,188,89,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  .solucao-box p {
+    font-size: 18px;
+    color: var(--texto);
+    line-height: 1.8;
+  }
+  .solucao-box strong { color: var(--verde); }
+  .solucao-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .solucao-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .solucao-item .s-icon { font-size: 28px; margin-bottom: 10px; }
+  .solucao-item p { font-size: 14px; color: var(--texto-suave); }
+  .solucao-item strong { display: block; font-size: 15px; color: #1a1a1a; margin-bottom: 4px; }
+
+  /* ── COMO FUNCIONA ── */
+  #como { background: var(--preto); }
+  .passos { display: flex; flex-direction: column; gap: 0; }
+  .passo {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .passo:last-child { padding-bottom: 0; }
+  .passo:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 48px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(30,188,89,0.4), rgba(30,188,89,0.05));
+  }
+  .passo-num {
+    width: 40px; height: 40px;
+    background: #1ebc59;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(30,188,89,0.25);
+    position: relative;
+    z-index: 1;
+  }
+  .passo-texto h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #1a1a1a; }
+  .passo-texto p { font-size: 15px; color: var(--texto-suave); }
+
+  /* ── BENEFÍCIOS ── */
+  #beneficios { background: var(--cinza-escuro); }
+  .ben-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .ben-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .ben-item:hover { border-color: rgba(30,188,89,0.3); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .ben-check {
+    width: 28px; height: 28px;
+    background: rgba(30,188,89,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #1aaa50;
+    font-size: 14px;
+  }
+  .ben-item p { font-size: 14px; color: var(--texto-suave); margin-top: 4px; }
+  .ben-item strong { font-size: 15px; color: #1a1a1a; display: block; margin-bottom: 4px; }
+
+  /* ── PARA QUEM ── */
+  #para-quem { background: var(--preto); }
+  .publico-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .publico-tag {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .publico-tag:hover { border-color: rgba(30,188,89,0.35); box-shadow: 0 2px 8px rgba(30,188,89,0.1); }
+  .publico-tag span { font-size: 16px; }
+
+  /* ── AUTORIDADE ── */
+  #autoridade { background: var(--cinza-escuro); }
+  .aut-box {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    padding: 36px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .aut-icon { font-size: 36px; flex-shrink: 0; }
+  .aut-box p { font-size: 16px; color: var(--texto-suave); line-height: 1.8; }
+  .aut-box strong { color: #1a1a1a; }
+
+  #oferta { background: var(--preto); }
+  .oferta-card {
+    background: #f0fdf5;
+    border: 1px solid rgba(30,188,89,0.25);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(30,188,89,0.08);
+  }
+  .oferta-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(30,188,89,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .oferta-card h2 { font-size: clamp(24px, 3.5vw, 34px); margin-bottom: 16px; color: #1a1a1a; }
+  .oferta-card > p { font-size: 16px; color: var(--texto-suave); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .oferta-inclui {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  .oferta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+  .oferta-item .check { color: #1aaa50; font-size: 16px; }
+
+  /* ── CTA FINAL ── */
+  #cta-final {
+    background: linear-gradient(135deg, #f0fdf5, #e8f5ee);
+    border-top: 1px solid rgba(30,188,89,0.15);
+    text-align: center;
+    padding: 100px 0;
+  }
+  #cta-final h2 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 16px; max-width: 600px; margin-left: auto; margin-right: auto; color: #1a1a1a; }
+  #cta-final p { font-size: 17px; color: var(--texto-suave); margin-bottom: 40px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #f3f6f4;
+    border-top: 1px solid var(--borda);
+    padding: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--texto-suave);
+  }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+
+  /* ── FLOAT BTN ── */
+  .float-wa {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 999;
+    background: #1ebc59;
+    color: #fff;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(30,188,89,0.4);
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .float-wa:hover { transform: scale(1.1); }
+
+  @media (max-width: 600px) {
+    .aut-box { flex-direction: column; }
+    section { padding: 60px 0; }
+    .oferta-card { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="tag">Link da bio que gera clientes</div>
+    <h1 class="fade-up">
+      Seu Instagram recebe visitas.<br>
+      Mas quantos <span class="destaque">pedidos de orçamento</span><br>
+      você realmente recebe?
+    </h1>
+    <p class="sub fade-up delay-1">
+      Criamos uma página simples e profissional que transforma quem visita seu perfil em clientes que entram em contato pelo WhatsApp.
+    </p>
+    <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20p%C3%A1gina%20profissional" class="btn-wa fade-up delay-2" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.123 1.528 5.855L.057 23.25c-.085.32.213.617.532.532l5.395-1.471A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.695-.513-5.235-1.407l-.376-.218-3.893 1.06 1.062-3.894-.228-.386A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero minha página agora
+    </a>
+    <p class="hero-proof fade-up delay-3">
+      ✓ <span>Sem termos técnicos</span> &nbsp;·&nbsp; ✓ <span>Entrega rápida</span> &nbsp;·&nbsp; ✓ <span>Focado em resultado</span>
+    </p>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="container">
+    <div class="tag">Você se identifica com isso?</div>
+    <h2 class="section-title">Por que as visitas<br>não viram clientes?</h2>
+    <p class="section-sub">Isso acontece com a maioria dos pequenos negócios que dependem do Instagram.</p>
+    <div class="problema-grid">
+      <div class="problema-item">
+        <div class="problema-icon">👀</div>
+        <div>
+          <h3>Visitas sem contato</h3>
+          <p>Pessoas entram no seu perfil, veem os posts, e vão embora sem mandar mensagem.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">🔗</div>
+        <div>
+          <h3>Link que não explica nada</h3>
+          <p>O link da bio leva para uma página genérica — ou uma lista de links — que não convence ninguém a pedir orçamento.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">❓</div>
+        <div>
+          <h3>Cliente que some</h3>
+          <p>A pessoa ficou interessada, mas não teve um caminho claro para pedir orçamento.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">📵</div>
+        <div>
+          <h3>WhatsApp esquecido</h3>
+          <p>Seu contato não está em destaque e o cliente não sabe como chegar até você.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARAÇÃO: LINKTREE VS PÁGINA PROFISSIONAL -->
+<section id="comparacao">
+  <div class="container">
+    <div class="tag">A diferença que importa</div>
+    <h2 class="section-title">"Coloquei um link lá"<br><span class="destaque">vs</span> Página que gera clientes</h2>
+    <p class="section-sub">Ter um link na bio não é o mesmo que ter uma página que converte. A diferença está no que acontece depois que o cliente clica.</p>
+    <div class="compare-wrap">
+      <div class="compare-card ruim">
+        <div class="compare-label">❌ Link solto, sem estratégia</div>
+        <h3>O cliente clica e some</h3>
+        <ul class="compare-list">
+          <li><span class="ico">✗</span> Não explica o que você faz</li>
+          <li><span class="ico">✗</span> Não gera confiança</li>
+          <li><span class="ico">✗</span> Não direciona para o WhatsApp</li>
+          <li><span class="ico">✗</span> Cliente chega perdido, sem saber o que pedir</li>
+          <li><span class="ico">✗</span> Você depende do cliente tomar a iniciativa</li>
+        </ul>
+      </div>
+      <div class="compare-card bom">
+        <div class="compare-label">✅ Página profissional</div>
+        <h3>O cliente clica e entra em contato</h3>
+        <ul class="compare-list">
+          <li><span class="ico">✓</span> Explica o que você faz de forma clara</li>
+          <li><span class="ico">✓</span> Gera confiança antes do contato</li>
+          <li><span class="ico">✓</span> Botão de WhatsApp em destaque</li>
+          <li><span class="ico">✓</span> Cliente chega pronto para pedir orçamento</li>
+          <li><span class="ico">✓</span> A página trabalha por você, 24h por dia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao">
+  <div class="container">
+    <div class="tag">A solução</div>
+    <h2 class="section-title">Uma página simples que<br><span class="destaque">transforma interesse em contato</span></h2>
+    <div class="solucao-box">
+      <p>
+        Criamos para você uma <strong>página focada em um único objetivo</strong>: fazer com que quem chega até ela entre em contato pelo WhatsApp para pedir orçamento.<br><br>
+        Sem complicação. Sem nada desnecessário. Só o que importa para transformar visitante em cliente.
+      </p>
+    </div>
+    <div class="solucao-items">
+      <div class="solucao-item">
+        <div class="s-icon">🏠</div>
+        <strong>Página principal do negócio</strong>
+        <p>Um lugar profissional para apresentar o que você faz.</p>
+      </div>
+      <div class="solucao-item">
+        <div class="s-icon">📎</div>
+        <strong>Link profissional da bio</strong>
+        <p>Substitui qualquer link genérico por algo que realmente vende.</p>
+      </div>
+      <div class="solucao-item">
+        <div class="s-icon">📣</div>
+        <strong>Funciona em anúncios</strong>
+        <p>Use em posts patrocinados no Instagram ou Google.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como">
+  <div class="container">
+    <div class="tag">Como funciona</div>
+    <h2 class="section-title">Simples assim</h2>
+    <p class="section-sub">Você não precisa entender de tecnologia para ter uma página que gera clientes.</p>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <div class="passo-texto">
+          <h3>Você nos conta sobre o seu negócio</h3>
+          <p>Respondendo algumas perguntas simples: o que você faz, para quem, e qual é o seu diferencial.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <div class="passo-texto">
+          <h3>Criamos sua página profissional</h3>
+          <p>Montamos tudo com foco em fazer o visitante entrar em contato pelo WhatsApp.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <div class="passo-texto">
+          <h3>Você começa a receber pedidos de orçamento</h3>
+          <p>Coloca o link na bio do Instagram, compartilha onde quiser, e os clientes chegam prontos para conversar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section id="beneficios">
+  <div class="container">
+    <div class="tag">Por que vale a pena</div>
+    <h2 class="section-title">O que muda no seu negócio</h2>
+    <div class="ben-grid">
+      <div class="ben-item">
+        <div class="ben-check">✓</div>
+        <div>
+          <strong>Mais pedidos de orçamento</strong>
+          <p>Visitantes do Instagram ou Google chegam até você com muito mais facilidade.</p>
+        </div>
+      </div>
+      <div class="ben-item">
+        <div class="ben-check">✓</div>
+        <div>
+          <strong>Link profissional para usar em tudo</strong>
+          <p>Bio do Instagram, anúncios, cartão de visita, Google — um único link que funciona.</p>
+        </div>
+      </div>
+      <div class="ben-item">
+        <div class="ben-check">✓</div>
+        <div>
+          <strong>Mais confiança antes do contato</strong>
+          <p>O cliente chega conhecendo seu trabalho, sem precisar perguntar o básico.</p>
+        </div>
+      </div>
+      <div class="ben-item">
+        <div class="ben-check">✓</div>
+        <div>
+          <strong>Imagem de negócio sério</strong>
+          <p>Uma página profissional diferencia você de quem usa só o Instagram.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section id="para-quem">
+  <div class="container">
+    <div class="tag">Para quem é</div>
+    <h2 class="section-title">Ideal para quem trabalha<br>com <span class="destaque">orçamento e serviço</span></h2>
+    <p class="section-sub">Se seu cliente precisa entrar em contato antes de comprar, essa página é para você.</p>
+    <div class="publico-grid">
+      <div class="publico-tag"><span>🏥</span> Clínicas e consultórios</div>
+      <div class="publico-tag"><span>💅</span> Estética e beleza</div>
+      <div class="publico-tag"><span>🔧</span> Prestadores de serviço</div>
+      <div class="publico-tag"><span>👩‍💼</span> Profissionais autônomos</div>
+      <div class="publico-tag"><span>🏠</span> Reforma e construção</div>
+      <div class="publico-tag"><span>📸</span> Fotógrafos e designers</div>
+      <div class="publico-tag"><span>🍽️</span> Buffet e eventos</div>
+      <div class="publico-tag"><span>🐾</span> Pet shops e veterinários</div>
+      <div class="publico-tag"><span>💡</span> Qualquer negócio local</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTORIDADE -->
+<section id="autoridade">
+  <div class="container">
+    <div class="tag">Por que funciona</div>
+    <h2 class="section-title" style="margin-bottom: 32px;">A estrutura foi<br>pensada para vender</h2>
+    <div class="aut-box">
+      <div class="aut-icon">🎯</div>
+      <div>
+        <p>
+          Cada elemento da página foi posicionado com base em <strong>como as pessoas tomam decisões</strong> na internet. Título que fala do problema, explicação clara do serviço, construção de confiança e um caminho direto para o WhatsApp.<br><br>
+          Não é uma página bonita por acaso. É uma página construída para fazer o visitante dar o próximo passo: <strong>entrar em contato com você</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section id="oferta">
+  <div class="container">
+    <div class="oferta-card">
+      <div class="tag">O que você recebe</div>
+      <h2>Sua página profissional<br><span class="destaque">pronta para gerar clientes</span></h2>
+      <p>Tudo que você precisa para transformar visitas em pedidos de orçamento, sem complicação.</p>
+      <div class="oferta-inclui">
+        <div class="oferta-item"><span class="check">✓</span> Página clara e focada em gerar contato</div>
+        <div class="oferta-item"><span class="check">✓</span> Botão de WhatsApp em destaque</div>
+        <div class="oferta-item"><span class="check">✓</span> Estrutura que apresenta e convence</div>
+        <div class="oferta-item"><span class="check">✓</span> Link pronto para colocar na bio</div>
+        <div class="oferta-item"><span class="check">✓</span> Funciona em celular e computador</div>
+      </div>
+      <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20p%C3%A1gina%20profissional" class="btn-wa btn-wa-lg" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.123 1.528 5.855L.057 23.25c-.085.32.213.617.532.532l5.395-1.471A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.695-.513-5.235-1.407l-.376-.218-3.893 1.06 1.062-3.894-.228-.386A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar pelo WhatsApp agora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <h2>Quer que o link da sua bio<br><span class="destaque">comece a gerar clientes</span> de verdade?</h2>
+    <p>Fale com a gente agora e veja como criar sua página.</p>
+    <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20p%C3%A1gina%20profissional" class="btn-wa btn-wa-lg" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.123 1.528 5.855L.057 23.25c-.085.32.213.617.532.532l5.395-1.471A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.695-.513-5.235-1.407l-.376-.218-3.893 1.06 1.062-3.894-.228-.386A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero minha página profissional
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 · Todos os direitos reservados</p>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/SEUNUMERO" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.123 1.528 5.855L.057 23.25c-.085.32.213.617.532.532l5.395-1.471A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.695-.513-5.235-1.407l-.376-.218-3.893 1.06 1.062-3.894-.228-.386A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+</body>
+</html>
