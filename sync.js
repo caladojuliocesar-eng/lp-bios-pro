@@ -37,7 +37,7 @@ async function sincronizarPlanilha() {
                     sobre_mim: row['4. Mini-Biografia: Escreva um parágrafo curto sobre sua trajetória ou sua marca'] || "",
                     prova_social: row["5. Prova Social: Me diga um número que gera autoridade (Ex: 'Mais de 500 meninas transformadas', '5 anos no mercado')"] || "",
                     servicos_lista: (row['6. Escreva seus top 3 Serviços Principais (Separe EXATAMENTE com vírgula)'] || "").split(',').map(s => s.trim()).filter(s => s),
-                    cor_destaque: row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'] || "#1ebc59",
+                    cor_destaque: (row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'] || "#1ebc59").startsWith('#') ? row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'] : '#' + row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'],
                     foto_url: row['9. Link da sua foto (Link Público do Google Drive)'] || ""
                 };
                 
