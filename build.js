@@ -27,6 +27,18 @@ function formatDriveUrl(url) {
   return url;
 }
 
+// Função para detectar se a cor é clara ou escura (Luminância)
+function getThemeByColor(hex) {
+  if (!hex || !hex.startsWith('#')) return 'dark';
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  
+  // Fórmula de luminância padrão
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return luminance > 0.5 ? 'light' : 'dark';
+}
+
 async function buildPages() {
   try {
     // 1. Ler o Template HTML
@@ -74,6 +86,10 @@ async function buildPages() {
       htmlModificado = htmlModificado.replace(/\{\{PROVA_SOCIAL\}\}/g, cliente.prova_social);
       htmlModificado = htmlModificado.replace(/\{\{CIDADE\}\}/g, cliente.cidade);
       htmlModificado = htmlModificado.replace(/\{\{COR_DESTAQUE\}\}/g, cliente.cor_destaque);
+      
+      // Aplicar Tema Adaptativo
+      const temaFinal = getThemeByColor(cliente.cor_destaque);
+      htmlModificado = htmlModificado.replace(/\{\{TEMA\}\}/g, temaFinal);
       
       // Foto com tratamento para Google Drive
       const fotoFinal = formatDriveUrl(cliente.foto_url) || "https://ui-avatars.com/api/?name=" + encodeURIComponent(cliente.nome_negocio) + "&background=random";

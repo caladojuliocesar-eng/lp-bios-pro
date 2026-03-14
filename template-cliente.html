@@ -11,18 +11,34 @@
     <style>
         :root {
             --brand: {{COR_DESTAQUE}};
-            /* Inteligência de Contraste: Cria versões claras da cor de destaque para textos/ícones */
             --brand-light: color-mix(in srgb, var(--brand), white 40%);
             --brand-soft: color-mix(in srgb, var(--brand), transparent 85%);
             --brand-glow: color-mix(in srgb, var(--brand), transparent 70%);
-            
+        }
+
+        /* TEMA ESCURO (Padrão Ottomatic) */
+        [data-theme="dark"] {
             --bg-dark: #090b0e;
             --bg-card: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.08);
             --border-light: rgba(255, 255, 255, 0.15);
-            
             --text-main: #ffffff;
             --text-muted: #94a3b8;
+            --mesh-opacity: 0.15;
+            --card-shadow: 0 4px 24px -1px rgba(0,0,0,0.5);
+        }
+
+        /* TEMA CLARO (Estética, Saúde, etc) */
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --bg-card: #ffffff;
+            --border: rgba(0, 0, 0, 0.05);
+            --border-light: rgba(0, 0, 0, 0.1);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --mesh-opacity: 0.1;
+            --card-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            --brand-light: var(--brand); /* Em light mode, usamos a cor cheia */
         }
 
         * {
@@ -51,7 +67,7 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.15;
+            opacity: var(--mesh-opacity);
             animation: meshFloat 20s infinite alternate;
         }
         .mesh-1 { width: 400px; height: 400px; top: -100px; right: -100px; background: var(--brand); }
@@ -181,7 +197,7 @@
             border-radius: 24px;
             padding: 24px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
+            box-shadow: var(--card-shadow);
         }
 
         .about-text {
@@ -271,7 +287,7 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="{{TEMA}}">
 
 <div class="mesh-bg">
     <div class="mesh-1"></div>
