@@ -27,18 +27,26 @@ async function sincronizarPlanilha() {
         response.data
             .pipe(csv())
             .on('data', (row) => {
+                // Função auxiliar para achar a chave (coluna) que contém determinado texto (case-insensitive)
+                const getVal = (prefix) => {
+                    const key = Object.keys(row).find(k => k.toLowerCase().includes(prefix.toLowerCase()));
+                    return key ? row[key] : "";
+                };
+
                 // Formatação dos dados que chegam da planilha para o formato do script
                 const clienteFormatado = {
-                    nome_negocio: row['1. Nome do Profissional ou do Negócio'] || "",
-                    cidade: row['7. Cidade e Bairro'] || "",
-                    whatsapp: (row['2. WhatsApp de Atendimento (com DDD)'] || "").replace(/\D/g, ''),
-                    whatsapp_display: row['2. WhatsApp de Atendimento (com DDD)'] || "",
-                    diferencial: row['3. Qual sua principal promessa ou diferencial? (Em 1 frase curta)'] || "",
-                    sobre_mim: row['4. Mini-Biografia: Escreva um parágrafo curto sobre sua trajetória ou sua marca'] || "",
-                    prova_social: row["5. Prova Social: Me diga um número que gera autoridade (Ex: 'Mais de 500 meninas transformadas', '5 anos no mercado')"] || "",
-                    servicos_lista: (row['6. Escreva seus top 3 Serviços Principais (Separe EXATAMENTE com vírgula)'] || "").split(',').map(s => s.trim()).filter(s => s),
-                    cor_destaque: (row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'] || "#1ebc59").startsWith('#') ? row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'] : '#' + row['8. Cor que representa sua marca (Apenas Código Hexadecimal. Ex: #fa4283)'],
-                    foto_url: row['9. Link da sua foto (Link Público do Google Drive)'] || ""
+                    nome_negocio: getVal('1. Nome') || "",
+                    cidade: getVal('7. Cidade') || "",
+                    whatsapp: (getVal('2. WhatsApp') || "").replace(/\D/g, ''),
+                    whatsapp_display: getVal('2. WhatsApp') || "",
+                    diferencial: getVal('3. Qual sua principal') || "",
+                    sobre_mim: getVal('4. Mini-Biografia') || "",
+                    prova_social: getVal('5. Prova Social') || "",
+                    servicos_lista: (getVal('6. Escreva seus top') || "").split(',').map(s => s.trim()).filter(s => s),
+                    cor_destaque: (getVal('8. Cor que representa') || "#1ebc59").startsWith('#') ? getVal('8. Cor que representa') : '#' + getVal('8. Cor que representa'),
+                    foto_url: getVal('9. Link da sua foto') || "",
+                    // Campo de segurança principal
+                    email_compra: getVal('E-mail') || ""
                 };
                 
                 // Ignora linhas vazias (sem nome do negocio)

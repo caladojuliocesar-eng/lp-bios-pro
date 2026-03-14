@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP Bios Pro | Sua Página Profissional que Gera Clientes</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1ebc59;
+    --verde-escuro: #128C7E;
+    --preto: #ffffff;
+    --cinza-escuro: #f3f6f4;
+    --cinza-medio: #e8ede9;
+    --cinza-card: #ffffff;
+    --texto: #1a1a1a;
+    --texto-suave: #5a6a62;
+    --branco: #1a1a1a;
+    --destaque: #1aaa50;
+    --borda: #e2e8e4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--preto);
+    color: var(--texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Sora', sans-serif;
+    line-height: 1.2;
+  }
+
+  /* ── UTILS ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .destaque { color: var(--verde); }
+  .tag {
+    display: inline-block;
+    background: rgba(30,188,89,0.10);
+    color: #1aaa50;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(30,188,89,0.22);
+    margin-bottom: 20px;
+  }
+
+  /* ── BOTÃO CHECKOUT ── */
+  .btn-checkout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #1ebc59;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 4px 20px rgba(30,188,89,0.25);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(30,188,89,0.35);
+    background: #19a84f;
+  }
+  .btn-checkout-lg { font-size: 18px; padding: 20px 40px; border-radius: 14px; width: 100%; max-width: 400px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 60px;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30,188,89,0.07) 0%, transparent 70%);
+    top: -100px; right: -200px;
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,188,89,0.05) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-inner h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero-inner .sub {
+    font-size: clamp(16px, 2.5vw, 19px);
+    color: var(--texto-suave);
+    margin-bottom: 36px;
+    max-width: 600px;
+  }
+  .hero-proof {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+  .hero-proof span { color: var(--verde); font-weight: 600; }
+
+  /* ── SEÇÕES ── */
+  section { padding: 80px 0; }
+
+  .section-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--texto-suave);
+    margin-bottom: 48px;
+    max-width: 580px;
+  }
+
+  /* ── PROBLEMA ── */
+  #problema { background: var(--cinza-escuro); }
+  .problema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .problema-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .problema-item:hover { border-color: rgba(30,188,89,0.3); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .problema-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .problema-item h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+  .problema-item p { font-size: 14px; color: var(--texto-suave); }
+
+  /* ── COMPARAÇÃO ── */
+  #comparacao { background: var(--preto); }
+  .compare-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 560px) { .compare-wrap { grid-template-columns: 1fr; } }
+  .compare-card {
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .compare-card.ruim {
+    background: #fff5f5;
+    border-color: rgba(239,68,68,0.2);
+  }
+  .compare-card.bom {
+    background: #f0fdf5;
+    border-color: rgba(30,188,89,0.25);
+  }
+  .compare-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .compare-card.ruim .compare-label { color: #f87171; }
+  .compare-card.bom .compare-label { color: var(--verde); }
+  .compare-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .compare-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+  .compare-list li .ico { flex-shrink: 0; margin-top: 1px; font-size: 15px; }
+
+  /* ── SOLUÇÃO ── */
+  #solucao { background: var(--cinza-escuro); }
+  .solucao-box {
+    background: #f0fdf5;
+    border: 1px solid rgba(30,188,89,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  .solucao-box p {
+    font-size: 18px;
+    color: var(--texto);
+    line-height: 1.8;
+  }
+  .solucao-box strong { color: var(--verde); }
+  .solucao-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .solucao-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .solucao-item .s-icon { font-size: 28px; margin-bottom: 10px; }
+  .solucao-item p { font-size: 14px; color: var(--texto-suave); }
+  .solucao-item strong { display: block; font-size: 15px; color: #1a1a1a; margin-bottom: 4px; }
+
+  /* ── COMO FUNCIONA ── */
+  #como { background: var(--preto); }
+  .passos { display: flex; flex-direction: column; gap: 0; }
+  .passo {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .passo:last-child { padding-bottom: 0; }
+  .passo:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 48px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(30,188,89,0.4), rgba(30,188,89,0.05));
+  }
+  .passo-num {
+    width: 40px; height: 40px;
+    background: #1ebc59;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(30,188,89,0.25);
+    position: relative;
+    z-index: 1;
+  }
+  .passo-texto h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #1a1a1a; }
+  .passo-texto p { font-size: 15px; color: var(--texto-suave); }
+
+  /* ── BENEFÍCIOS ── */
+  #beneficios { background: var(--cinza-escuro); }
+  .ben-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .ben-item {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .ben-item:hover { border-color: rgba(30,188,89,0.3); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .ben-check {
+    width: 28px; height: 28px;
+    background: rgba(30,188,89,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #1aaa50;
+    font-size: 14px;
+  }
+  .ben-item p { font-size: 14px; color: var(--texto-suave); margin-top: 4px; }
+  .ben-item strong { font-size: 15px; color: #1a1a1a; display: block; margin-bottom: 4px; }
+
+  /* ── OFERTA ── */
+  #oferta { background: var(--preto); }
+  .oferta-card {
+    background: #f0fdf5;
+    border: 1px solid rgba(30,188,89,0.25);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(30,188,89,0.08);
+  }
+  .oferta-card h2 { font-size: clamp(24px, 3.5vw, 34px); margin-bottom: 16px; color: #1a1a1a; }
+  .oferta-inclui {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  .oferta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+  .oferta-item .check { color: #1aaa50; font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #f3f6f4;
+    border-top: 1px solid var(--borda);
+    padding: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--texto-suave);
+  }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="tag">Link da bio que gera clientes</div>
+    <h1 class="fade-up">
+      Seu Instagram recebe visitas.<br>
+      Mas quantos <span class="destaque">pedidos de orçamento</span><br>
+      você realmente recebe?
+    </h1>
+    <p class="sub fade-up delay-1">
+      Criamos para você a <strong>LP Bios Pro</strong>: uma página personalizada, rápida e profissional que transforma quem visita seu perfil em clientes reais.
+    </p>
+    <a href="https://pay.kiwify.com.br/AZKZsnO" class="btn-checkout btn-checkout-lg fade-up delay-2">
+      Quero minha página profissional agora
+    </a>
+    <p class="hero-proof fade-up delay-3">
+      ✓ <span>Sem termos técnicos</span> &nbsp;·&nbsp; ✓ <span>Entrega automática</span> &nbsp;·&nbsp; ✓ <span>Focado em conversão</span>
+    </p>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="container">
+    <div class="tag">O Problema</div>
+    <h2 class="section-title">Por que as visitas<br>não viram clientes?</h2>
+    <p class="section-sub">Isso acontece com a maioria dos negócios que dependem de links genéricos na bio.</p>
+    <div class="problema-grid">
+      <div class="problema-item">
+        <div class="problema-icon">👀</div>
+        <div>
+          <h3>Visitas sem contato</h3>
+          <p>Pessoas entram no seu perfil, mas vão embora sem mandar mensagem por falta de clareza.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">🔗</div>
+        <div>
+          <h3>Links comuns que confundem</h3>
+          <p>Links padrão (agregadores simples) apenas mostram uma lista de botões que não convencem ninguém.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">❓</div>
+        <div>
+          <h3>Falta de Profissionalismo</h3>
+          <p>Sem uma página que apresente seus serviços, você perde autoridade para a concorrência.</p>
+        </div>
+      </div>
+      <div class="problema-item">
+        <div class="problema-icon">📵</div>
+        <div>
+          <h3>Dificuldade no Contato</h3>
+          <p>Se o seu WhatsApp não está em destaque estratégico, o cliente desiste antes de começar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARAÇÃO -->
+<section id="comparacao">
+  <div class="container">
+    <div class="tag">A Diferença</div>
+    <h2 class="section-title">Links comuns na bio<br><span class="destaque">vs</span> LP Bios Pro</h2>
+    <div class="compare-wrap">
+      <div class="compare-card ruim">
+        <div class="compare-label">❌ Agregadores Genéricos</div>
+        <h3>O cliente clica e se perde</h3>
+        <ul class="compare-list">
+          <li><span class="ico">✗</span> Lista fria de botões</li>
+          <li><span class="ico">✗</span> Zero construção de autoridade</li>
+          <li><span class="ico">✗</span> Design amador e engessado</li>
+          <li><span class="ico">✗</span> Várias opções que distraem o cliente</li>
+        </ul>
+      </div>
+      <div class="compare-card bom">
+        <div class="compare-label">✅ LP Bios Pro</div>
+        <h3>O cliente clica e chama no Zap</h3>
+        <ul class="compare-list">
+          <li><span class="ico">✓</span> Design Premium e exclusivo</li>
+          <li><span class="ico">✓</span> Foco total na sua promessa</li>
+          <li><span class="ico">✓</span> CTA estratégico para o WhatsApp</li>
+          <li><span class="ico">✓</span> Transmite confiança imediata</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como">
+  <div class="container">
+    <div class="tag">Processo</div>
+    <h2 class="section-title">Simples e Automático</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <div class="passo-texto">
+          <h3>Garanta seu Acesso</h3>
+          <p>Clique no botão para realizar o pagamento único. Sem taxas escondidas ou mensalidades.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <div class="passo-texto">
+          <h3>Preencha seus Dados</h3>
+          <p>Você será levado a um formulário simples para colocar seu nome, serviços, fotos e WhatsApp.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <div class="passo-texto">
+          <h3>Página no Ar</h3>
+          <p>Nosso sistema gera sua página profissional instantaneamente. É só colocar o link na bio e vender!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section id="oferta">
+  <div class="container">
+    <div class="oferta-card">
+      <div class="tag">Oferta Exclusiva</div>
+      <h2>Sua Estrutura Profissional<br><span class="destaque">por um preço simbólico</span></h2>
+      <div class="oferta-inclui">
+        <div class="oferta-item"><span class="check">✓</span> Página de Alta Conversão</div>
+        <div class="oferta-item"><span class="check">✓</span> Design Premium (Glassmorphism)</div>
+        <div class="oferta-item"><span class="check">✓</span> Integração Direta com WhatsApp</div>
+        <div class="oferta-item"><span class="check">✓</span> Hospedagem Inclusa</div>
+      </div>
+      
+      <div style="margin-bottom: 32px;">
+        <p style="font-size: 14px; color: var(--texto-suave); text-decoration: line-through;">De R$ 197,00</p>
+        <p style="font-size: 48px; font-weight: 800; color: var(--verde);">R$ 47,00</p>
+        <p style="font-size: 14px; color: var(--texto-suave);">Pagamento único</p>
+      </div>
+
+      <a href="https://pay.kiwify.com.br/AZKZsnO" class="btn-checkout btn-checkout-lg">
+        Garantir Minha LP Bios Pro
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 · LP Bios Pro · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>
