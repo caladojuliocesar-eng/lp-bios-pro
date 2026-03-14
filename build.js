@@ -51,14 +51,17 @@ async function buildPages() {
       // Montar a lista de serviços em HTML (Cards)
       let servicosHTML = '';
       if (cliente.servicos_lista && cliente.servicos_lista.length > 0) {
-        servicosHTML = cliente.servicos_lista.map(servico => `
+        servicosHTML = cliente.servicos_lista.map(servico => {
+            const [nome, desc] = servico.split('|').map(s => s.trim());
+            return `
             <div class="service-item">
                 <div class="service-icon">✦</div>
                 <div class="service-desc">
-                    <h4>${servico}</h4>
-                    <p>Especialidade Premium</p>
+                    <h4>${nome}</h4>
+                    ${desc ? `<p>${desc}</p>` : ''}
                 </div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
       } else {
         servicosHTML = '<p style="color:var(--text-muted); text-align:center;">Nenhum serviço cadastrado.</p>';
       }
