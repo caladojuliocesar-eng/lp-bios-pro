@@ -9,10 +9,10 @@ const DADOS_PATH = path.join(__dirname, 'clientes.json');
 
 async function sincronizarPlanilha() {
     console.log("📥 Baixando dados da Planilha Google...");
-    
+
     if (GOOGLE_SHEETS_CSV_URL === "SUA_URL_AQUI") {
-      console.error("❌ ERRO: A URL da planilha ainda não foi configurada no script sync.js!");
-      return;
+        console.error("❌ ERRO: A URL da planilha ainda não foi configurada no script sync.js!");
+        return;
     }
 
     try {
@@ -48,7 +48,7 @@ async function sincronizarPlanilha() {
                     // Campo de segurança principal
                     email_compra: getVal('E-mail') || ""
                 };
-                
+
                 // Ignora linhas vazias (sem nome do negocio)
                 if (clienteFormatado.nome_negocio) {
                     clientes.push(clienteFormatado);

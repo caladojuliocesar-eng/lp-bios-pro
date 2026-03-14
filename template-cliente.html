@@ -30,15 +30,19 @@
 
         /* TEMA CLARO (Estética, Saúde, etc) */
         [data-theme="light"] {
-            --bg-dark: #f8fafc;
+            --bg-dark: #fbfcfd;
             --bg-card: #ffffff;
-            --border: rgba(0, 0, 0, 0.05);
-            --border-light: rgba(0, 0, 0, 0.1);
+            --border: rgba(0, 0, 0, 0.04);
+            --border-light: rgba(0, 0, 0, 0.08);
             --text-main: #0f172a;
-            --text-muted: #64748b;
-            --mesh-opacity: 0.1;
-            --card-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            --brand-light: var(--brand); /* Em light mode, usamos a cor cheia */
+            --text-muted: #475569; /* Escurecido para melhor leitura */
+            --mesh-opacity: 0.12;
+            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            
+            /* Inteligência de Contraste para Light Mode: 
+               Garante que o título da seção seja legível mesmo com cores claras */
+            --brand-light: color-mix(in srgb, var(--brand), black 30%); 
+            --brand-soft: color-mix(in srgb, var(--brand), transparent 92%);
         }
 
         * {
