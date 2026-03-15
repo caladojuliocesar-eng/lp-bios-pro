@@ -26,6 +26,7 @@
             --text-muted: #94a3b8;
             --mesh-opacity: 0.15;
             --card-shadow: 0 4px 24px -1px rgba(0,0,0,0.5);
+            --h1-gradient: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
         }
 
         /* TEMA CLARO (Estética, Saúde, etc) */
@@ -35,14 +36,12 @@
             --border: rgba(0, 0, 0, 0.04);
             --border-light: rgba(0, 0, 0, 0.08);
             --text-main: #0f172a;
-            --text-muted: #475569; /* Escurecido para melhor leitura */
-            --mesh-opacity: 0.12;
-            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
-            
-            /* Inteligência de Contraste para Light Mode: 
-               Garante que o título da seção seja legível mesmo com cores claras */
-            --brand-light: color-mix(in srgb, var(--brand), black 30%); 
-            --brand-soft: color-mix(in srgb, var(--brand), transparent 92%);
+            --text-muted: #334155; /* Ainda mais escuro */
+            --mesh-opacity: 0.15;
+            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --brand-light: color-mix(in srgb, var(--brand), black 40%); 
+            --brand-soft: color-mix(in srgb, var(--brand), transparent 90%);
+            --h1-gradient: linear-gradient(180deg, #0f172a 0%, #334155 100%);
         }
 
         * {
@@ -141,7 +140,7 @@
             font-weight: 800;
             margin-bottom: 12px;
             letter-spacing: -1px;
-            background: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
+            background: var(--h1-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -152,7 +151,7 @@
             color: var(--text-muted);
             margin-bottom: 30px;
             padding: 0 10px;
-            font-weight: 400;
+            font-weight: 500; /* Um pouco mais de peso */
             line-height: 1.5;
         }
 
@@ -207,7 +206,7 @@
         .about-text {
             font-size: 15px;
             line-height: 1.8;
-            color: #e2e8f0;
+            color: var(--text-main); /* Mudado de fixo para var(--text-main) */
         }
 
         /* Services Grid */
