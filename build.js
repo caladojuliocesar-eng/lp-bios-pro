@@ -4,6 +4,7 @@ const path = require('path');
 const TEMPLATE_PATH = path.join(__dirname, 'template-cliente.html');
 const DADOS_PATH = path.join(__dirname, 'clientes.json');
 const DIST_DIR = path.join(__dirname, 'dist');
+const BASE_URL = 'https://bios.ottomatic.com.br';
 
 // Função auxiliar para criar slug do nome_negocio
 function generateSlug(text) {
@@ -15,6 +16,21 @@ function generateSlug(text) {
     .replace(/\-\-+/g, '-')         // Replace multiple - with single -
     .replace(/^-+/, '')             // Trim - from start of text
     .replace(/-+$/, '');            // Trim - from end of text
+}
+
+// Função auxiliar para copiar pastas recursivamente
+function copyRecursiveSync(src, dest) {
+  const exists = fs.existsSync(src);
+  const stats = exists && fs.statSync(src);
+  const isDirectory = exists && stats.isDirectory();
+  if (isDirectory) {
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest);
+    fs.readdirSync(src).forEach((childItemName) => {
+      copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName));
+    });
+  } else if (exists) {
+    fs.copyFileSync(src, dest);
+  }
 }
 
 // Função auxiliar para converter link do Google Drive em link direto de imagem
@@ -101,12 +117,26 @@ async function buildPages() {
       const outputPath = path.join(DIST_DIR, `${slug}.html`);
       fs.writeFileSync(outputPath, htmlModificado, 'utf-8');
 
-      console.log(`✅ Página gerada: ${slug}.html`);
+      console.log(`✅ Página gerada: ${BASE_URL}/${slug}.html`);
     }
 
     // 6. Gerar a Landing Page de Vendas Principal (vendas.html -> index.html)
     const salesLP = fs.readFileSync(path.join(__dirname, 'vendas.html'), 'utf-8');
     fs.writeFileSync(path.join(DIST_DIR, 'index.html'), salesLP, 'utf-8');
+
+    // 6.1 Copiar pasta de imagens para o dist
+    const srcImages = path.join(__dirname, 'images');
+    const destImages = path.join(DIST_DIR, 'images');
+    if (fs.existsSync(srcImages)) {
+      copyRecursiveSync(srcImages, destImages);
+      console.log('📸 Pasta de imagens copiada para o dist.');
+    }
+    // 6.2 Copiar página isolada do Silvio Cerri para o dist
+    const silvioPath = path.join(__dirname, 'silvio-cerri.html');
+    if (fs.existsSync(silvioPath)) {
+      fs.copyFileSync(silvioPath, path.join(DIST_DIR, 'silvio-cerri.html'));
+      console.log('📄 Página isolada silvio-cerri.html copiada para o dist.');
+    }
 
     // 7. Gerar um Painel (painel.html) para o Usuário ver na pasta raiz da Vercel
     let indexHTML = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Painel LP Bios Pro</title><style>body { font-family: sans-serif; padding: 40px; background: #f3f6f4; } .card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } a { color: #1ebc59; font-weight: bold; text-decoration: none; }</style></head><body><h1>Painel de Clientes Ativos</h1>`;
@@ -118,7 +148,7 @@ async function buildPages() {
         const slug = generateSlug(cliente.nome_negocio);
         indexHTML += `<div class="card">
                 <h3>${cliente.nome_negocio}</h3>
-                <p>Link: <a href="/${slug}.html" target="_blank">/${slug}.html</a></p>
+                <p>Link: <a href="${BASE_URL}/${slug}.html" target="_blank">${BASE_URL}/${slug}.html</a></p>
                 <p>WhatsApp: ${cliente.whatsapp_display}</p>
             </div>`;
       });

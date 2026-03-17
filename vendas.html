@@ -7,17 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --verde: #1ebc59;
-    --verde-escuro: #128C7E;
-    --preto: #ffffff;
-    --cinza-escuro: #f3f6f4;
-    --cinza-medio: #e8ede9;
-    --cinza-card: #ffffff;
-    --texto: #1a1a1a;
-    --texto-suave: #5a6a62;
-    --branco: #1a1a1a;
-    --destaque: #1aaa50;
-    --borda: #e2e8e4;
+    --cyan: #00d8ff;
+    --blue: #0070f3;
+    --navy-deep: #000814;
+    --card-bg: rgba(0, 112, 243, 0.05); /* Sutil azulado */
+    --border: rgba(0, 216, 255, 0.1);
+    --texto: #ffffff;
+    --texto-suave: #b0c4de;
+    --branco: #ffffff;
+    --destaque: var(--cyan);
+    --glow: rgba(0, 216, 255, 0.3);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +25,7 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--preto);
+    background: var(--navy-deep);
     color: var(--texto);
     line-height: 1.6;
     overflow-x: hidden;
@@ -39,11 +38,11 @@
 
   /* ── UTILS ── */
   .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-  .destaque { color: var(--verde); }
+  .destaque { color: var(--cyan); text-shadow: 0 0 20px rgba(0, 216, 255, 0.3); }
   .tag {
     display: inline-block;
-    background: rgba(30,188,89,0.10);
-    color: #1aaa50;
+    background: rgba(0, 216, 255, 0.08);
+    color: var(--cyan);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
@@ -60,25 +59,75 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: #1ebc59;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
     color: #fff;
     font-family: 'Sora', sans-serif;
     font-weight: 700;
     font-size: 16px;
     padding: 16px 32px;
-    border-radius: 12px;
+    border-radius: 100px; /* Mais arredondado como no print */
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    box-shadow: 0 4px 20px rgba(30,188,89,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 112, 243, 0.3);
     border: none;
     cursor: pointer;
   }
   .btn-checkout:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(30,188,89,0.35);
-    background: #19a84f;
+    box-shadow: 0 8px 32px rgba(0, 216, 255, 0.4);
+    filter: brightness(1.1);
   }
+  /* ── MESH BG ── */
+  .mesh-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .mesh-bg div {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    animation: meshFloat 20s infinite alternate;
+  }
+  .mesh-1 { width: 400px; height: 400px; top: -100px; right: -100px; background: var(--blue); }
+  .mesh-2 { width: 300px; height: 300px; bottom: 10%; left: -50px; background: var(--cyan); animation-delay: -5s; }
+
+  @keyframes meshFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 100px) scale(1.2); }
+  }
+
   .btn-checkout-lg { font-size: 18px; padding: 20px 40px; border-radius: 14px; width: 100%; max-width: 400px; }
+
+  /* ── DEMO IMAGES ── */
+  .demo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 20px;
+  }
+  .demo-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .demo-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--verde);
+  }
+  .demo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+  }
 
   /* ── HERO ── */
   #hero {
@@ -145,24 +194,24 @@
   }
 
   /* ── PROBLEMA ── */
-  #problema { background: var(--cinza-escuro); }
+  #problema { background: transparent; }
   .problema-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
   }
   .problema-item {
-    background: #ffffff;
-    border: 1px solid var(--borda);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 28px;
     display: flex;
     gap: 16px;
     align-items: flex-start;
     transition: border-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
-  .problema-item:hover { border-color: rgba(30,188,89,0.3); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .problema-item:hover { border-color: var(--cyan); box-shadow: 0 4px 16px var(--glow); }
   .problema-icon {
     font-size: 24px;
     flex-shrink: 0;
@@ -172,12 +221,12 @@
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 6px;
-    color: #1a1a1a;
+    color: #ffffff;
   }
   .problema-item p { font-size: 14px; color: var(--texto-suave); }
 
   /* ── COMPARAÇÃO ── */
-  #comparacao { background: var(--preto); }
+  #comparacao { background: transparent; }
   .compare-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -191,11 +240,11 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
   .compare-card.ruim {
-    background: #fff5f5;
+    background: rgba(239, 68, 68, 0.05);
     border-color: rgba(239,68,68,0.2);
   }
   .compare-card.bom {
-    background: #f0fdf5;
+    background: rgba(30, 188, 89, 0.05);
     border-color: rgba(30,188,89,0.25);
   }
   .compare-label {
@@ -206,12 +255,12 @@
     margin-bottom: 16px;
   }
   .compare-card.ruim .compare-label { color: #f87171; }
-  .compare-card.bom .compare-label { color: var(--verde); }
+  .compare-card.bom .compare-label { color: var(--cyan); }
   .compare-card h3 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #1a1a1a;
+    color: #ffffff;
   }
   .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .compare-list li {
@@ -224,9 +273,9 @@
   .compare-list li .ico { flex-shrink: 0; margin-top: 1px; font-size: 15px; }
 
   /* ── SOLUÇÃO ── */
-  #solucao { background: var(--cinza-escuro); }
+  #solucao { background: transparent; }
   .solucao-box {
-    background: #f0fdf5;
+    background: rgba(30, 188, 89, 0.05);
     border: 1px solid rgba(30,188,89,0.2);
     border-radius: 20px;
     padding: 40px;
@@ -237,26 +286,26 @@
     color: var(--texto);
     line-height: 1.8;
   }
-  .solucao-box strong { color: var(--verde); }
+  .solucao-box strong { color: var(--cyan); }
   .solucao-items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
   }
   .solucao-item {
-    background: #ffffff;
-    border: 1px solid var(--borda);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
     border-radius: 14px;
     padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   .solucao-item .s-icon { font-size: 28px; margin-bottom: 10px; }
   .solucao-item p { font-size: 14px; color: var(--texto-suave); }
-  .solucao-item strong { display: block; font-size: 15px; color: #1a1a1a; margin-bottom: 4px; }
+  .solucao-item strong { display: block; font-size: 15px; color: #ffffff; margin-bottom: 4px; }
 
   /* ── COMO FUNCIONA ── */
-  #como { background: var(--preto); }
+  #como { background: transparent; }
   .passos { display: flex; flex-direction: column; gap: 0; }
   .passo {
     display: flex;
@@ -273,11 +322,11 @@
     top: 48px;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, rgba(30,188,89,0.4), rgba(30,188,89,0.05));
+    background: linear-gradient(to bottom, var(--blue), transparent);
   }
   .passo-num {
     width: 40px; height: 40px;
-    background: #1ebc59;
+    background: var(--blue);
     color: #fff;
     font-family: 'Sora', sans-serif;
     font-weight: 800;
@@ -287,32 +336,32 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(30,188,89,0.25);
+    box-shadow: 0 4px 16px rgba(0, 112, 243, 0.4);
     position: relative;
     z-index: 1;
   }
-  .passo-texto h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #1a1a1a; }
+  .passo-texto h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #ffffff; }
   .passo-texto p { font-size: 15px; color: var(--texto-suave); }
 
   /* ── BENEFÍCIOS ── */
-  #beneficios { background: var(--cinza-escuro); }
+  #beneficios { background: transparent; }
   .ben-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
   }
   .ben-item {
-    background: #ffffff;
-    border: 1px solid var(--borda);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
     border-radius: 14px;
     padding: 24px 20px;
     display: flex;
     gap: 14px;
     align-items: flex-start;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
-  .ben-item:hover { border-color: rgba(30,188,89,0.3); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(30,188,89,0.08); }
+  .ben-item:hover { border-color: var(--cyan); transform: translateY(-2px); box-shadow: 0 4px 16px var(--glow); }
   .ben-check {
     width: 28px; height: 28px;
     background: rgba(30,188,89,0.12);
@@ -321,25 +370,24 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: #1aaa50;
+    color: var(--cyan);
     font-size: 14px;
   }
   .ben-item p { font-size: 14px; color: var(--texto-suave); margin-top: 4px; }
-  .ben-item strong { font-size: 15px; color: #1a1a1a; display: block; margin-bottom: 4px; }
+  .ben-item strong { font-size: 15px; color: #ffffff; display: block; margin-bottom: 4px; }
 
   /* ── OFERTA ── */
-  #oferta { background: var(--preto); }
+  #oferta { background: transparent; }
   .oferta-card {
-    background: #f0fdf5;
+    background: rgba(30, 188, 89, 0.05);
     border: 1px solid rgba(30,188,89,0.25);
     border-radius: 24px;
     padding: 48px 40px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 2px 16px rgba(30,188,89,0.08);
   }
-  .oferta-card h2 { font-size: clamp(24px, 3.5vw, 34px); margin-bottom: 16px; color: #1a1a1a; }
+  .oferta-card h2 { font-size: clamp(24px, 3.5vw, 34px); margin-bottom: 16px; color: #ffffff; }
   .oferta-inclui {
     display: flex;
     flex-direction: column;
@@ -355,14 +403,14 @@
     align-items: center;
     gap: 12px;
     font-size: 15px;
-    color: #1a1a1a;
+    color: #ffffff;
   }
-  .oferta-item .check { color: #1aaa50; font-size: 16px; }
+  .oferta-item .check { color: var(--cyan); font-size: 16px; }
 
   /* ── FOOTER ── */
   footer {
-    background: #f3f6f4;
-    border-top: 1px solid var(--borda);
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--border);
     padding: 24px;
     text-align: center;
     font-size: 13px;
@@ -382,6 +430,11 @@
 </head>
 <body>
 
+<div class="mesh-bg">
+  <div class="mesh-1"></div>
+  <div class="mesh-2"></div>
+</div>
+
 <!-- HERO -->
 <section id="hero">
   <div class="container hero-inner">
@@ -400,6 +453,24 @@
     <p class="hero-proof fade-up delay-3">
       ✓ <span>Sem termos técnicos</span> &nbsp;·&nbsp; ✓ <span>Entrega automática</span> &nbsp;·&nbsp; ✓ <span>Focado em conversão</span>
     </p>
+  </div>
+</section>
+
+<!-- DEMONSTRAÇÃO VISUAL -->
+<section id="demonstracao">
+  <div class="container">
+    <div class="tag">Transformação Real</div>
+    <h2 class="section-title">De um link amador para um<br><span class="destaque">Design de Elite</span></h2>
+    <p class="section-sub">Veja na prática a diferença gritante entre o que você tem hoje e o que a BiosPro entrega.</p>
+    
+    <div class="demo-grid">
+      <div class="demo-item fade-up">
+        <img src="images/antes-depois.png" alt="Comparativo Antes e Depois">
+      </div>
+      <div class="demo-item fade-up delay-1">
+        <img src="images/anatomia.png" alt="Anatomia da Conversão BiosPro">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -518,7 +589,7 @@
       
       <div style="margin-bottom: 32px;">
         <p style="font-size: 14px; color: var(--texto-suave); text-decoration: line-through;">De R$ 197,00</p>
-        <p style="font-size: 48px; font-weight: 800; color: var(--verde);">R$ 47,00</p>
+        <p style="font-size: 48px; font-weight: 800; color: var(--cyan);">R$ 47,00</p>
         <p style="font-size: 14px; color: var(--texto-suave);">Pagamento único</p>
       </div>
 
