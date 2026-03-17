@@ -60,6 +60,12 @@ async function buildPages() {
     // 1. Ler o Template HTML
     const templateHTML = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
 
+    // 1.1 Garantir que o diretório de saída existe
+    if (!fs.existsSync(DIST_DIR)) {
+      fs.mkdirSync(DIST_DIR);
+      console.log('📁 Diretório dist criado.');
+    }
+
     // 2. Ler os dados dos clientes
     const dadosClientes = JSON.parse(fs.readFileSync(DADOS_PATH, 'utf-8'));
 
