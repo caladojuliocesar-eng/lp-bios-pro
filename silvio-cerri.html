@@ -9,23 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette: Official Silvio Cerri - Premium Gold & Deep Blue (Refined for Mobile) */
+            /* Palette: Official Silvio Cerri - Solid Aesthetic (Refined) */
             --brand: #D4AF37; 
-            --brand-light: #FFD700; /* Dourado mais saturado */
+            --brand-light: #FFD700;
             --brand-soft: rgba(212, 175, 55, 0.2);
             --brand-glow: rgba(212, 175, 55, 0.5);
-            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
             
-            --bg-dark: #070D16; /* Azul Marinho mais profundo */
-            --bg-deep: #050505; /* Preto quase puro */
-            --bg-card: rgba(13, 27, 42, 0.85); /* Azul Marinho com mais opacidade */
-            --border: rgba(192, 192, 192, 0.15);
-            --border-light: rgba(192, 192, 192, 0.3);
+            --bg-dark: #0D1B2A; /* Azul Escuro Oficial */
+            --bg-deep: #050505;
+            --bg-card: rgba(27, 38, 59, 0.95); /* Azul saturado e sólido */
+            --border: rgba(192, 192, 192, 0.1);
+            --border-light: rgba(192, 192, 192, 0.2);
             --text-main: #FFFFFF;
-            --text-silver: #E2E8F0; /* Off-white para mais brilho */
-            --text-muted: #CBD5E1; /* Prata mais nítido */
+            --text-silver: #E2E8F0;
+            --text-muted: #CBD5E1;
             --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9);
-            --h1-gradient: linear-gradient(180deg, #FFD700 0%, #D4AF37 100%);
             
             --ff-heading: 'Cinzel', serif;
             --ff-body: 'Plus Jakarta Sans', sans-serif;
@@ -42,40 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND EFFECTS --- */
-        .mesh-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 10%, #0D1B2A 0%, #070D16 100%);
-        }
-        
-        /* Noise Texture */
-        .mesh-bg::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            pointer-events: none;
-        }
-
-        .mesh-bg div {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.12;
-            animation: meshFloat 30s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
-        }
-        .mesh-1 { width: 600px; height: 600px; top: -100px; right: -200px; background: var(--brand); }
-        .mesh-2 { width: 500px; height: 500px; bottom: 10%; left: -150px; background: #1B263B; animation-delay: -10s; }
-        .mesh-3 { width: 400px; height: 400px; top: 30%; left: 50%; transform: translateX(-50%); background: var(--brand-glow); opacity: 0.1 !important; }
-
-        @keyframes meshFloat {
-            0% { transform: translate(0, 0) scale(1.1); }
-            100% { transform: translate(100px, 150px) scale(1.4); }
-        }
 
         .container {
             max-width: 480px;
@@ -157,10 +121,7 @@
             font-weight: 900;
             margin-bottom: 8px;
             letter-spacing: 1px;
-            background: var(--h1-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--brand); /* Cor sólida em vez de degradê */
             text-transform: uppercase;
         }
 
@@ -195,10 +156,10 @@
         }
 
         .btn-primary {
-            background: var(--gold-gradient);
+            background: var(--brand);
             color: var(--bg-deep);
-            box-shadow: 0 8px 24px -6px var(--brand-glow), inset 0 2px 4px rgba(255,255,255,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 24px -6px var(--brand-glow);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
@@ -322,11 +283,6 @@
 </head>
 <body>
 
-<div class="mesh-bg">
-    <div class="mesh-1"></div>
-    <div class="mesh-2"></div>
-    <div class="mesh-3"></div>
-</div>
 
 <div class="container">
     
