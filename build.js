@@ -137,12 +137,15 @@ async function buildPages() {
       copyRecursiveSync(srcImages, destImages);
       console.log('📸 Pasta de imagens copiada para o dist.');
     }
-    // 6.2 Copiar página isolada do Silvio Cerri para o dist
-    const silvioPath = path.join(__dirname, 'silvio-cerri.html');
-    if (fs.existsSync(silvioPath)) {
-      fs.copyFileSync(silvioPath, path.join(DIST_DIR, 'silvio-cerri.html'));
-      console.log('📄 Página isolada silvio-cerri.html copiada para o dist.');
-    }
+    // 6.2 Copiar páginas isoladas para o dist
+    const pagesToCopy = ['silvio-cerri.html', 'jo-rezende.html', 'fabelos.html'];
+    pagesToCopy.forEach(page => {
+      const pagePath = path.join(__dirname, page);
+      if (fs.existsSync(pagePath)) {
+        fs.copyFileSync(pagePath, path.join(DIST_DIR, page));
+        console.log(`📄 Página isolada ${page} copiada para o dist.`);
+      }
+    });
 
     // 7. Gerar um Painel (painel.html) para o Usuário ver na pasta raiz da Vercel
     let indexHTML = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Painel LP Bios Pro</title><style>body { font-family: sans-serif; padding: 40px; background: #f3f6f4; } .card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } a { color: #1ebc59; font-weight: bold; text-decoration: none; }</style></head><body><h1>Painel de Clientes Ativos</h1>`;
